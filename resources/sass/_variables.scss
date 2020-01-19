@@ -1,0 +1,61 @@
+// Body
+$body-bg: #fafafa;
+
+// Typography
+$font-family-sans-serif: 'Helvetica', sans-serif;
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
+
+// Colors
+$blue: #3490dc;
+$indigo: #6574cd;
+$purple: #9561e2;
+$pink: #f66d9b;
+$red: #e3342f;
+$orange: #f6993f;
+$yellow: #ffed4a;
+$green: #38c172;
+$teal: #4dc0b5;
+$cyan: #6cb2eb;
+
+//story gradient
+$story-border : linear-gradient(to bottom, #b65eba 0%, #2e8de1 100%);
+
+
+.account-img {
+    position: relative;
+    background: #fafafa;
+    height: 128px;
+    width: 128px;
+    border-radius: 50%;
+    
+    & img {
+        width: 120px;
+        height: 120px;
+        border: 1px solid lightgrey;
+        position: absolute;
+        top: 4px;  
+        left: 4px;
+    }
+
+    &:before {
+        content: '';
+        height: 137px;
+        width: 137px;
+        position: absolute;
+        top: -5px; 
+        left: -5px;
+        z-index: -1;
+        background: $story-border;
+        border-radius: 50%;
+    }
+}
+
+.stacked-img img{
+    max-width: 100%;
+    width: 90%;
+}
+
+.single-img{
+    max-width: 100%;
+}
