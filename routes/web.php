@@ -11,19 +11,20 @@
 |
 */
 
-// Auth::routes();
+Auth::routes(); // login view
 
-Route::post('/follow/{user}', 'FollowsController@store');
+Route::middleware('auth')->group( function() {
+	Route::get('/profile/{user}', 'ProfileController@index');
+	Route::get('/profile/{user}/edit', 'ProfileController@edit'); /** show the edit form */
+	Route::patch('/profile/{username}', 'ProfileController@update'); /** actually do the edit action job */
 
+	Route::get('/', 'PostsController@index');
+	Route::get('/p/create', 'PostsController@create');
+	Route::post('/p', 'PostsController@store');
+	Route::get('/p/{post}', 'PostsController@show');
+	Route::delete('/p/{post}', 'PostsController@destroy')->name('post.destroy');
 
-Route::get('/profile/{user}', 'ProfileController@index');
-Route::get('/profile/{user}/edit', 'ProfileController@edit'); /** show the edit form */
-Route::patch('/profile/{username}', 'ProfileController@update'); /** actually do the edit action job */
-
-Route::get('/', 'PostsController@index');
-Route::get('/p/create', 'PostsController@create');
-Route::post('/p', 'PostsController@store');
-Route::get('/p/{post}', 'PostsController@show');
-Route::delete('/p/{post}', 'PostsController@destroy')->name('post.destroy');
+	Route::post('/follow/{user}', 'FollowsController@store');
+});
 
 Route::get('/search', 'SearchController@search')->name('search'); /** search profile */
