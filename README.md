@@ -25,4 +25,4 @@
 
 ## Build front-end with Vuejs
 <p><i>npm install</i></p>
-<p><i></i>npm run dev</p>
+<p><i>npm run dev</i></p>
