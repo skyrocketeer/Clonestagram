@@ -24,13 +24,6 @@ class RegisterController extends Controller
     use RegistersUsers;
 
     /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/profile/{{ $user->username }}';
-
-    /**
      * Create a new controller instance.
      *
      * @return void
@@ -68,7 +61,18 @@ class RegisterController extends Controller
             'username' => $data['username'],
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'password' => Hash::make($data['password'], ['rounds' => 5]),
         ]);
     }
+
+     /**
+     * Where to redirect users after registration.
+     *
+     * @var string
+     */
+    public function redirectTo(){
+        $username = auth()->user()->username;
+        
+        return route('profile_page', compact('username'));  
+    } 
 }
