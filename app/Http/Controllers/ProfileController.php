@@ -9,8 +9,8 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class ProfileController extends Controller
 {
-    public function index($user){
-        $user = User::where('username',$user)->orWhere('id',$user)->firstOrFail();
+    public function index(Request $request){
+        $user = User::where('username',$request->user()->username)->orWhere('id',$request->user()->id)->firstOrFail();
 
         $follows = (auth()->user()) ? auth()->user()->following->contains($user->id) : false;
 

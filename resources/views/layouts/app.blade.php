@@ -25,7 +25,7 @@
             <div class="container">
                 <a class="navbar-brand d-flex" href="{{ url('/') }}">
                     <div id="logo-img">
-                        <img src="../uploads/logo.svg" class="pr-2" style="height:30px; border-right:2px solid black">
+                        <img src="{{asset('storage/uploads/logo.png')}}" class="pr-2" style="height:30px; border-right:2px solid black">
                     </div>
                     <div class="logo pl-2">Catstagram</div> 
                 </a>

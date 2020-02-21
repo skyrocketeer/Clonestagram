@@ -58,6 +58,15 @@ class User extends Authenticatable
         });
     }
 
+    /** 
+     * Get the route key for the model.
+     *
+     * @return string
+    */
+    public function getRouteKeyName(){
+        return 'username';
+    }
+
     public function profile()
     {
         return $this->hasOne(Profile::class);

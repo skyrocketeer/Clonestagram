@@ -9,17 +9,20 @@
 
 ## Install package
 
-/* Install bcmath to use laravel telescope (you can skip telescope by delete the package in composer.json)
-apt install php7.2-bcmath
-*/
-<b>composer install </b>
+<p>Install bcmath to use laravel telescope (you can skip telescope by delete the package in composer.json)</p>
+<i>apt install php7.2-bcmath</i>
+<p>composer install </p>
 
 ## Symlink environment
-ln -sF $(pwd)/env/.env.local $(pwd)/.env
+<i>ln -sF $(pwd)/env/.env.local $(pwd)/.env</i>
 
 ## Generate app key
-php artisan key:generate
+<i>php artisan key:generate</i>
 
 ## Migrate and populate database
-php artisan migrate
-php artisan db:Seed
+<p><i>php artisan migrate</i></p>
+<p><i>php artisan db:seed</i></p>
+
+## Build front-end with Vuejs
+<p><i>npm install</i></p>
+<p><i>npm run dev</i></p>
