@@ -3,9 +3,11 @@
 /storage/*.key
 /storage/logs/*
 /vendor
+/app/Providers/TelescopeServiceProvider.php
 /env
 .env
-/config/database.php
+/config/*
+/public/vendor/*
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
