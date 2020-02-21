@@ -13,9 +13,9 @@
         "intervention/image": "^2.5",
         "laravel/framework": "^6.2",
         "laravel/passport": "^8.0",
-        "laravel/telescope": "^2.1",
-        "laravel/tinker": "^1.0",
         "laravel/ui": "^1.1",
+        "league/flysystem": "^1.0",
+        "league/flysystem-aws-s3-v3": "^1.0",
         "paragonie/random_compat": "2.*"
     },
     "require-dev": {
@@ -23,7 +23,9 @@
         "fzaninotto/faker": "^1.4",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^3.0",
-        "phpunit/phpunit": "^8.0"
+        "phpunit/phpunit": "^8.0",
+        "laravel/telescope": "^2.1",
+        "laravel/tinker": "^1.0"
     },
     "config": {
         "optimize-autoloader": true,

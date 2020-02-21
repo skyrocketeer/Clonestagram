@@ -5,9 +5,11 @@
 /vendor
 /env
 .env
+/config/database.php
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
+composer.*
 npm-debug.log
 yarn-error.log
 webpack.mix.js

@@ -11,7 +11,7 @@
 |
 */
 
-Auth::routes(); // login view
+Auth::routes();
 
 Route::middleware('auth')->group( function() {
 	Route::get('/profile/{username}', 'ProfileController@index')->name('profile.page');

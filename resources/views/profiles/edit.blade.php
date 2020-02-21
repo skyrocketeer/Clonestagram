@@ -50,9 +50,11 @@
                 <label for="image" class="col-form-label">Profile Image</label>
                 <input type="file" class="form-control-file" name="image" id="image">
                 
-                @error('image')
-                    <strong>{{ $message }}</strong>
-                @enderror
+                @if (session('error'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ session('error') }}</strong>
+                    </span>
+                @endif
             </div>
             
             <div class="row col-1 mt-4 mx-auto">

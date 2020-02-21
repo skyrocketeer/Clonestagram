@@ -4,7 +4,7 @@
 <div class="row my-5 account-info">
     <div class="col-3 p-0 mx-3 my-auto">
         <div class="account-img">
-            <img src="{{ $user->profile()->first()->profileImage() }}" alt="account-avatar" class="rounded-circle mx-auto d-block">
+            <img src="{{ asset($user->profile()->first()->profileImage()) }}" alt="account-avatar" class="rounded-circle mx-auto d-block">
         </div>
     </div>
     <div class="col-8">
