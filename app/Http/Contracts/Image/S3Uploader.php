@@ -6,7 +6,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
 class S3Uploader implements ImageUpload {
-   private $destinationPath = 'images/';
+   private $destinationPath = 'images/uploads';
    private $fileName;
 
    public function generateRandomName($file){
@@ -17,8 +17,9 @@ class S3Uploader implements ImageUpload {
    public function uploadToDriver($file) {
       try{
          $this->generateRandomName($file);
-         Storage::disk('s3')->putFileAs($this->destinationPath . $this->fileName, $file,$this->fileName);
-         return config('filesystems.disks.s3.url').$this>destinationPath.$this->fileName;
+         Storage::disk('s3')->put($this->fileName, file_get_contents($file),$this->destinationPath);
+         return Storage::disk('s3')->url($this->fileName);
+         // return config('filesystems.disks.s3.url').$this>destinationPath.$this->fileName;
       } catch(Exception $exception){
          return false;
       }
