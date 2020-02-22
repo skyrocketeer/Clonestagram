@@ -26,7 +26,7 @@ class Profile extends Model
     }
 
     public function profileImage(){
-        $fallbackImg = (env('APP_ENV') == 'production')? env('AWS_URI').'/images/profile/no-image.png' : 'profile/no-image.png';   
+        $fallbackImg = (env('APP_ENV') == 'production')? env('AWS_URI').'/images/uploads/no-image.png' : 'profile/no-image.png';   
         $imagePath = ($this->image)? $this->image : $fallbackImg;
         return (env('APP_ENV') == 'production')? $imagePath : '/storage/'. $imagePath;
     }
