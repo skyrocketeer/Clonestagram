@@ -6,12 +6,12 @@ use Illuminate\Http\Request;
 use Validator;
 use Illuminate\Support\Str;
 use App\Http\Contracts\Image\DriverFactory;
-use App\Exceptions\Handler as Exception;
 
 class ImageController extends Controller
 {
     protected $uploader;
     protected $strategy;
+    protected $imgPath;
 
     /**
      * get a concrete factory
@@ -26,28 +26,23 @@ class ImageController extends Controller
      * @param $request
      */
     public function upload(){
-        $rules = [ 'image' => 'image|mimes:jpg,jpeg,png,max:2048' ]; 
-        $validator = Validator::make(request()->all(), $rules);
-    
-        // Kiểm tra nếu có lỗi
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors('invalid file');
+        $isUploaded = $this->uploader->uploadToDriver(request()->file('image'));
+        if(!$isUploaded){
+            return null;
         }
-        
-        $imgPath = $this->uploader->uploadToDriver(request()->file('image'));
-        return $imgPath;
+
+        $this->imgPath = $isUploaded;
     }
 
     public function setStrategy(){
         $this->strategy = app()->environment('local')? 'local' : 's3'; 
     }
 
-    /**
-     * get image path 
-     * @param AWS S3 path
+    /** 
      * return path
      */
     public function getImgPath(){
+        // $this->upload();
         return $this->imgPath;
     }
 }

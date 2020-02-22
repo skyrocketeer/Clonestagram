@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Http\Controllers;
+use Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
@@ -64,12 +65,24 @@ class ProfileController extends Controller
             'link' =>  'nullable|regex:' .$regex,
         ]);
 
-        $imgPath = $photo->upload();
-        $imgArr = ['image' => $imgPath];
+        if(request()->hasFile('image')):
+            $rules = [ 'image' => 'mimes:jpg,jpeg,png,max:2048' ]; 
+            $validator = Validator::make(request()->only('image'), $rules);
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors(['image' => 'invalid file type or exceed limit 2MB']);
+            }
 
-        if(request()->hasFile('image')): 
+            $photo->upload();
+            $imgPath = $photo->getImgPath();
+            
+            if(is_null($imgPath)):
+                auth()->user()->profile()->update($data);
+            else:
+            $imgArr = ['image' => $imgPath];        
             auth()->user()->profile()->update( array_merge($data,$imgArr ?? []) );
-        else: auth()->user()->update($data);
+            endif;
+
+        else: auth()->user()->profile()->update($data);
         endif;
 
         return redirect("/profile/".auth()->user()->username);

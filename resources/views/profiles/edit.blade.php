@@ -48,13 +48,14 @@
 
             <div class="row col-8 mx-auto">
                 <label for="image" class="col-form-label">Profile Image</label>
-                <input type="file" class="form-control-file" name="image" id="image">
+                <input type="file" class="form-control-file @error('image') is-invalid @enderror" name="image" id="profile_image">
+                <small>Only jpeg, png less than 2MB</small>
                 
-                @if (session('error'))
+                @error('image')
                     <span class="invalid-feedback" role="alert">
-                        <strong>{{ session('error') }}</strong>
+                        <strong>{{ $message }}</strong>
                     </span>
-                @endif
+                @enderror
             </div>
             
             <div class="row col-1 mt-4 mx-auto">

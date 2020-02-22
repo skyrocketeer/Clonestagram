@@ -20,7 +20,7 @@ class LocalDiskUploader implements ImageUpload {
          Storage::putFileAs('public/'.$this->destinationPath, $file,$this->fileName);
          return $this->destinationPath.$this->fileName;
       } catch(Exception $exception){
-         return back()->withErrors('Upload failed');
+         return false;
       }
    }
 }
