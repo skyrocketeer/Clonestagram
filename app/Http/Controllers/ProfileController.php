@@ -64,6 +64,7 @@ class ProfileController extends Controller
             'description' => 'required',
             'link' =>  'nullable|regex:' .$regex,
         ]);
+        
 
         if(request()->hasFile('image')):
             $rules = [ 'image' => 'mimes:jpg,jpeg,png,max:2048' ]; 
@@ -82,7 +83,8 @@ class ProfileController extends Controller
             auth()->user()->profile()->update( array_merge($data,$imgArr ?? []) );
             endif;
 
-        else: auth()->user()->profile()->update($data);
+        else: dd($data);
+        auth()->user()->profile()->update($data);
         endif;
 
         return redirect("/profile/".auth()->user()->username);
