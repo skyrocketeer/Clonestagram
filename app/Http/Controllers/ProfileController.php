@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Cache;
 class ProfileController extends Controller
 {
     public function index(Request $request){
-        $user = User::where('username',$request->user()->username)->orWhere('id',$request->user()->id)->firstOrFail();
+        $user = User::where('id',$request->user()->id)->firstOrFail();
 
         $follows = (auth()->user()) ? auth()->user()->following->contains($user->id) : false;
 
@@ -41,8 +41,8 @@ class ProfileController extends Controller
         return view('profiles.index',compact('user','follows','postCount', 'followersCount', 'followingCount'));
     }
 
-    public function edit($user){
-        $user = User::where('username',$user)->first();
+    public function edit(){
+        $user = User::where('id',request()->user()->id)->firstOrFail();
         $this->authorize('update', $user->profile);
 
         return view('profiles.edit', compact('user'));
