@@ -65,7 +65,7 @@ class ProfileController extends Controller
             'link' =>  'nullable|regex:' .$regex,
         ]);
         
-
+        dd($data);
         if(request()->hasFile('image')):
             $rules = [ 'image' => 'mimes:jpg,jpeg,png,max:2048' ]; 
             $validator = Validator::make(request()->only('image'), $rules);
@@ -83,7 +83,7 @@ class ProfileController extends Controller
             auth()->user()->profile()->update( array_merge($data,$imgArr ?? []) );
             endif;
 
-        else: dd($data);
+        else: auth()->user()->profile()->update($data);
         auth()->user()->profile()->update($data);
         endif;
 
