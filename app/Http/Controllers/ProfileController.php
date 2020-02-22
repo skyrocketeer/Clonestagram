@@ -62,12 +62,13 @@ class ProfileController extends Controller
             'title' =>'required|max:128',
             'description' => 'required',
             'link' =>  'nullable|regex:' .$regex,
-            
         ]);
-        
-        if(request()->hasFile('image')):
-            $imgPath = $photo->uploadtoS3(request()->file('image'));
-            auth()->user()->profile()->update( array_merge($data,$imgPath ?? []) );
+
+        $imgPath = $photo->upload();
+        $imgArr = ['image' => $imgPath];
+
+        if(request()->hasFile('image')): 
+            auth()->user()->profile()->update( array_merge($data,$imgArr ?? []) );
         else: auth()->user()->update($data);
         endif;
 

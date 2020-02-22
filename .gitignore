@@ -1,13 +1,12 @@
 /node_modules
 /public/storage
-/storage/*.key
-/storage/logs/*
+/storage/*
 /vendor
 /app/Providers/TelescopeServiceProvider.php
 /env
 .env
 /config/*
-/public/vendor/*
+/public/vendor/telescope
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
