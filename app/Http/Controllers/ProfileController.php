@@ -56,7 +56,7 @@ class ProfileController extends Controller
      * @return Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(User $user, ImageController $photo){
+    public function update(ImageController $photo){
         $regex = '/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/'; //regrex rules for replacing https:// to be more friendly url
         $data = request()->validate([
             'title' =>'required|max:128',
@@ -68,6 +68,7 @@ class ProfileController extends Controller
         if(request()->hasFile('image')):
             $imgPath = $photo->uploadtoS3(request()->file('image'));
             auth()->user()->profile()->update( array_merge($data,$imgPath ?? []) );
+        else: auth()->user()->update($data);
         endif;
 
         return redirect("/profile/".auth()->user()->username);
