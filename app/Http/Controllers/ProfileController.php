@@ -42,7 +42,7 @@ class ProfileController extends Controller
     }
 
     public function edit($user){
-        $user = User::where('username',$user)->orWhere('id',$user)->first();
+        $user = User::where('username',$user)->first();
         $this->authorize('update', $user->profile);
 
         return view('profiles.edit', compact('user'));
