@@ -10,8 +10,8 @@ use Illuminate\Support\Facades\Cache;
 
 class ProfileController extends Controller
 {
-    public function index(Request $request){
-        $user = User::where('id',$request->user()->id)->firstOrFail();
+    public function index(){
+        $user = User::where('id',auth()->user()->id)->first();
 
         $follows = (auth()->user()) ? auth()->user()->following->contains($user->id) : false;
 
@@ -43,7 +43,7 @@ class ProfileController extends Controller
     }
 
     public function edit(){
-        $user = User::where('id',auth()->user()->id)->firstOrFail();
+        $user = User::where('id',auth()->user()->id)->first();
         $this->authorize('update', $user->profile);
 
         return view('profiles.edit', compact('user'));
@@ -51,8 +51,6 @@ class ProfileController extends Controller
 
     /**
      * Update the given profile.
-     *
-     * @param User $user
      * @param ImageControler $image
      * @return Redirection
      * @throws \Illuminate\Auth\Access\AuthorizationException
@@ -66,7 +64,6 @@ class ProfileController extends Controller
             'link' =>  'nullable|regex:' .$regex,
         ]);
         
-        dd($data);
         if(request()->hasFile('image')):
             $rules = [ 'image' => 'mimes:jpg,jpeg,png,max:2048' ]; 
             $validator = Validator::make(request()->only('image'), $rules);
