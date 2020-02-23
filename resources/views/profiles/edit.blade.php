@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<form method="POST" action="/profile/{{ }}/" enctype="multipart/form-data">
+@dd($user)
+<form method="POST" action="/profile/{{ $user }}/edit" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
 

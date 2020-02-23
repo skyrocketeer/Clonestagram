@@ -14,7 +14,7 @@
 Auth::routes();
 
 Route::middleware('auth')->group( function() {
-	Route::get('/profile/{username}', 'ProfileController@index');
+	Route::get('/profile/{username}', 'ProfileController@index')->name('profile.page');
 	Route::get('/profile/{username}/edit', 'ProfileController@edit'); /** show the edit form */
 	Route::patch('/profile/{id}/edit', 'ProfileController@update'); /** actually do the edit action job */
 

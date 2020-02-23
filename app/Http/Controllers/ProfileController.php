@@ -16,12 +16,12 @@ class ProfileController extends Controller
         $follows = (auth()->user()) ? auth()->user()->following->contains($user->id) : false;
 
         $postCount = Cache::remember(
-                'count.posts.'. $user->id, 
-                now()->addSeconds(30), 
-                function () use ($user){
-                    return $user->posts()->count();
-                }
-            );
+            'count.posts.'. $user->id, 
+            now()->addSeconds(30), 
+            function () use ($user){
+                return $user->posts()->count();
+            }
+        );
         
         $followersCount = Cache::remember(
             'count.followers.'. $user->id, 
@@ -56,6 +56,7 @@ class ProfileController extends Controller
      * @param ImageControler $image
      * @return Redirection
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     * 
      */
     public function update(ImageController $photo){
         $regex = '/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/'; //regrex rules for replacing https:// to be more friendly url
@@ -87,6 +88,6 @@ class ProfileController extends Controller
         auth()->user()->profile()->update($data);
         endif;
 
-        return redirect()->route('profiles.index',['username' => auth()->user()->username]);
+        return redirect()->route('profile.page',['username' => auth()->user()->username]);
     }
 }
