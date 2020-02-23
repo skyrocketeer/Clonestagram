@@ -71,6 +71,6 @@ class RegisterController extends Controller
     public function redirectTo(){
         $username = auth()->user()->username;
         
-        return route('profile.page',['username'=>$username]);  
+        return route('profile_page', compact('username'));  
     } 
 }
