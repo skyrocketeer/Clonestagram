@@ -43,7 +43,7 @@ class ProfileController extends Controller
     }
 
     public function edit(){
-        $user = User::where('id',request()->user()->id)->firstOrFail();
+        $user = User::where('id',auth()->user()->id)->firstOrFail();
         $this->authorize('update', $user->profile);
 
         return view('profiles.edit', compact('user'));
@@ -54,7 +54,7 @@ class ProfileController extends Controller
      *
      * @param User $user
      * @param ImageControler $image
-     * @return Response
+     * @return Redirection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(ImageController $photo){
