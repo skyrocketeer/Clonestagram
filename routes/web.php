@@ -14,9 +14,9 @@
 Auth::routes();
 
 Route::middleware('auth')->group( function() {
-	Route::get('/profile/{username}', 'ProfileController@index')->name('profile.page');
+	Route::get('/profile/{username}', 'ProfileController@index');
 	Route::get('/profile/{username}/edit', 'ProfileController@edit'); /** show the edit form */
-	Route::patch('/profile/{id}', 'ProfileController@update'); /** actually do the edit action job */
+	Route::patch('/profile/{id}/edit', 'ProfileController@update'); /** actually do the edit action job */
 
 	Route::get('/', 'PostsController@index');
 	Route::get('/p/create', 'PostsController@create');
@@ -28,4 +28,3 @@ Route::middleware('auth')->group( function() {
 });
 
 Route::get('/search', 'SearchController@search')->name('search'); /** search profile */
-https://stackoverflow.com/questions/46845815/model-not-updating-laravel/46845923
