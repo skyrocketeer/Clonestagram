@@ -87,6 +87,6 @@ class ProfileController extends Controller
         auth()->user()->profile()->update($data);
         endif;
 
-        return redirect("/profile/".auth()->user()->username);
+        return redirect()->route('profile.page',['username' => auth()->user()->username]);
     }
 }
