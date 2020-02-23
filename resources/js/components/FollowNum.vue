@@ -6,13 +6,11 @@
     import EventBus from '../EventBus';
     export default {
         props: ['followers'],
-
         data() {
             return {
                 followersCount: this.followers
             }
         },
-
         created() {
             EventBus.$on('followChanged', (status) => {
                 if(status) {
@@ -23,9 +21,8 @@
                 };
             })        
         },
-
         watch: { 
-            followersCount : function () {
+            followersCount() {
                 return this.followersCount;
             }
         }

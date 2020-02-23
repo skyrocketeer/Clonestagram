@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<form method="POST" action="/profile/{{ $user->id }}/" enctype="multipart/form-data">
+<form method="POST" action="/profile/{{ $user->username }}/edit" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
 
@@ -48,10 +48,13 @@
 
             <div class="row col-8 mx-auto">
                 <label for="image" class="col-form-label">Profile Image</label>
-                <input type="file" class="form-control-file" name="image" id="image">
+                <input type="file" class="form-control-file @error('image') is-invalid @enderror" name="image" id="profile_image">
+                <small>Only jpeg, png less than 2MB</small>
                 
                 @error('image')
-                    <strong>{{ $message }}</strong>
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
                 @enderror
             </div>
             

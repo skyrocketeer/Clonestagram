@@ -22,7 +22,7 @@ window.Vue = require('vue');
 Vue.component('follow-button', require('./components/FollowButton.vue').default);
 Vue.component('follow-num', require('./components/FollowNum.vue').default);
 
-var profileSearch = {
+const profileSearch = {
     template: ``,
     data : {
         

@@ -44,7 +44,7 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                                    <label class="form-check-label" for="remember">
+                                    <label class="form-check-label my-1" for="remember">
                                         {{ __('Remember Me') }}
                                     </label>
                                 </div>
@@ -65,6 +65,16 @@
                             </div>
                         </div>
                     </form>
+
+                    <div class="mt-2 bg-primary">
+                        <div class="row mx-auto">
+                            <strong>Or use this account to log in </strong>
+                        </div>
+                        <div class="row d-flex mx-auto">
+                            <small class="px-2">Email: alpha_male@gmail.com</small>
+                            <small class="px-2">Password: 11111111</small>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
