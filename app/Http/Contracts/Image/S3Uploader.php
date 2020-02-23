@@ -17,7 +17,7 @@ class S3Uploader implements ImageUpload {
    public function uploadToDriver($file) {
       try{
          $this->generateRandomName($file);
-         Storage::disk('s3')->put($$this->destinationPath.$this->fileName, file_get_contents($file),'public');
+         Storage::disk('s3')->put($this->destinationPath.$this->fileName, file_get_contents($file),'public');
          return Storage::disk('s3')->url($this->fileName);
          // return config('filesystems.disks.s3.url').$this>destinationPath.$this->fileName;
       } catch(Exception $exception){
