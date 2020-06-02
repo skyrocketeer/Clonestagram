@@ -7,6 +7,8 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
+This repo is powered by Laravel and Vuejs
+
 ## Install package
 
 <p>Install bcmath to use laravel telescope (you can skip telescope by delete the package in composer.json)</p>
@@ -19,10 +21,10 @@
 ## Generate app key
 <i>php artisan key:generate</i>
 
-## Migrate and populate database
+## Database migration
 <p><i>php artisan migrate</i></p>
 <p><i>php artisan db:seed</i></p>
 
-## Build front-end with Vuejs
+## Build frontend
 <p><i>npm install</i></p>
 <p><i>npm run dev</i></p>
